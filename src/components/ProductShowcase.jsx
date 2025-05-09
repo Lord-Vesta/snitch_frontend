@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { fetchProducts } from "../utils/Api.utils";
 
 const products = [
   {
@@ -133,10 +135,23 @@ const products = [
 
 const ProductShowcase = ({ title }) => {
   const [showMore, setShowMore] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location.pathname, "---------");
 
   const toggleShowMore = () => {
     setShowMore(!showMore);
   };
+
+  const handleFetchProducts = async () => {
+    const response = await fetchProducts();
+    console.log(response, "----------response");
+  };
+
+  useEffect(() => {
+    handleFetchProducts();
+  }, []);
 
   return (
     <section id="products" className="py-16 px-8 bg-white mx-auto">
@@ -147,6 +162,7 @@ const ProductShowcase = ({ title }) => {
               <div
                 key={idx}
                 className="group h-[25rem] rounded-lg  shadow-sm w-[18rem] relative mx-auto"
+                onClick={() => navigate("/product/1")}
               >
                 <img
                   src={product.image}
@@ -176,6 +192,7 @@ const ProductShowcase = ({ title }) => {
               <div
                 key={idx}
                 className="group h-[25rem] rounded-lg  shadow-sm w-[18rem] relative mx-auto"
+                onClick={() => navigate("/product/1")}
               >
                 <img
                   src={product.image}
