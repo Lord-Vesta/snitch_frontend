@@ -19,7 +19,7 @@ const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(null);
   return (
-    <div className="flex flex-col md:flex-row gap-8 p-10 max-w-7xl mx-auto">
+    <div className="flex flex-col md:flex-row gap-8 p-10 max-w-7xl">
       {/* Image Gallery */}
       <div className="flex flex-col md:flex-row gap-4">
         <div className="flex md:flex-col gap-2">
